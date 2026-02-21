@@ -1,30 +1,47 @@
 import httpx
-import json
 from config import OPENROUTER_API_KEY, OPENROUTER_API_URL, PORTFOLIO_DATA
 
 async def chat_with_openrouter(user_message: str, conversation_history: list) -> str:
     
-    system_prompt = f"""You are a helpful AI assistant representing a software developer's portfolio. 
-    
-Here is the portfolio owner's information:
-- Name: {PORTFOLIO_DATA['name']}
-- Title: {PORTFOLIO_DATA['title']}
-- Bio: {PORTFOLIO_DATA['bio']}
-- Skills: {', '.join(PORTFOLIO_DATA['skills'])}
-- Email: {PORTFOLIO_DATA['email']}
-- Location: {PORTFOLIO_DATA['location']}
+    edu_lines = []
+    for edu in PORTFOLIO_DATA['education']:
+        line = f"- {edu.get('institution', '')} | {edu.get('degree', '')} | {edu.get('year', '')}"
+        if edu.get('cgpa'):
+            line += f" | CGPA: {edu['cgpa']}"
+        if edu.get('percentage_12'):
+            line += f" | Class XII: {edu['percentage_12']}"
+        if edu.get('percentage_10'):
+            line += f" | Class X: {edu['percentage_10']}"
+        edu_lines.append(line)
 
-Experience:
-{json.dumps(PORTFOLIO_DATA['experience'], indent=2)}
+    proj_lines = []
+    for p in PORTFOLIO_DATA['projects']:
+        proj_lines.append(
+            f"- {p['name']}: {p['description']} (Tech: {', '.join(p['technologies'])})"
+        )
 
-Projects:
-{json.dumps(PORTFOLIO_DATA['projects'], indent=2)}
+    system_prompt = f"""You are a helpful AI assistant for {PORTFOLIO_DATA['name']}'s portfolio. Answer questions accurately using only the information below.
 
-Education:
-{json.dumps(PORTFOLIO_DATA['education'], indent=2)}
+NAME: {PORTFOLIO_DATA['name']}
+TITLE: {PORTFOLIO_DATA['title']}
+LOCATION: {PORTFOLIO_DATA['location']}
+EMAIL: {PORTFOLIO_DATA['email']}
+BIO: {PORTFOLIO_DATA['bio']}
 
-Answer questions about the portfolio owner's skills, experience, and projects accurately. 
-Be professional, helpful, and concise. If asked something not in the portfolio, say you don't have that information."""
+SKILLS: {', '.join(PORTFOLIO_DATA['skills'])}
+
+EXPERIENCE:
+{chr(10).join(f"- {e['position']} at {e['company']} ({e['duration']}): {e['description']}" for e in PORTFOLIO_DATA['experience'])}
+
+PROJECTS:
+{chr(10).join(proj_lines)}
+
+EDUCATION:
+{chr(10).join(edu_lines)}
+
+GITHUB: {PORTFOLIO_DATA['github']}
+
+Rules: Be concise and professional. Only use the data above. If something is not listed, say you don't have that information."""
 
     messages = [{"role": "system", "content": system_prompt}]
     messages.extend(conversation_history)
@@ -43,7 +60,7 @@ Be professional, helpful, and concise. If asked something not in the portfolio, 
                     "model": "arcee-ai/trinity-mini:free",
                     "messages": messages,
                     "temperature": 0.7,
-                    "max_tokens": 300
+                    "max_tokens": 600
                 },
                 timeout=30.0
             )
