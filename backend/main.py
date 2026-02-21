@@ -14,6 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://portfolio-ai-chatbot.netlify.app",
+        "https://cool-snickerdoodle-2bb35b.netlify.app",
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:3002",
