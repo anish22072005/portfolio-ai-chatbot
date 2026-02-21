@@ -5,6 +5,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  VITE_API_URL = "https://portfolio-ai-chatbot-nz6z.onrender.com/api"
 
 # SPA fallback — all routes serve index.html
 [[redirects]]
