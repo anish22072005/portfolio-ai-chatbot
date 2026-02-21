@@ -10,7 +10,6 @@ from config import PORTFOLIO_DATA
 
 app = FastAPI(title="Portfolio AI Chatbot API", version="1.0.0")
 
-# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -41,22 +40,15 @@ async def root():
 
 @app.get("/api/portfolio")
 async def get_portfolio():
-    """Get portfolio information"""
     return PORTFOLIO_DATA
 
 @app.post("/api/chat", response_model=ChatResponseSchema)
 async def chat(request: ChatRequestSchema):
-    """
-    Send a message to the AI chatbot and get a response.
-    The AI has access to the portfolio information.
-    """
-    
     if not request.message.strip():
         raise HTTPException(status_code=400, detail="Message cannot be empty")
     
     db = await get_db()
-    
-    # Get conversation history for this session (if DB is available)
+
     conversation = []
     if db is not None:
         try:
@@ -68,13 +60,11 @@ async def chat(request: ChatRequestSchema):
                 conversation.append({"role": "assistant", "content": msg["assistant_message"]})
         except Exception:
             pass
-    
-    # Get response from OpenRouter
+
     assistant_response = await chat_with_openrouter(request.message, conversation)
     
     now = datetime.utcnow()
 
-    # Save to MongoDB (if DB is available)
     if db is not None:
         try:
             chat_message = {
@@ -95,7 +85,6 @@ async def chat(request: ChatRequestSchema):
 
 @app.get("/api/chat/history/{session_id}")
 async def get_chat_history(session_id: str):
-    """Get chat history for a session"""
     db = await get_db()
     
     messages = await db.chat_messages.find(
@@ -116,7 +105,6 @@ async def get_chat_history(session_id: str):
 
 @app.post("/api/session/new")
 async def create_new_session():
-    """Create a new chat session"""
     session_id = str(uuid.uuid4())
     return {"session_id": session_id}
 

@@ -4,7 +4,6 @@ from typing import Optional
 from bson import ObjectId
 
 class ChatMessage(BaseModel):
-    """MongoDB chat message model"""
     id: Optional[str] = Field(None, alias="_id")
     session_id: str
     user_message: str

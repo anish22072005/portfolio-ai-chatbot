@@ -3,10 +3,6 @@ import json
 from config import OPENROUTER_API_KEY, OPENROUTER_API_URL, PORTFOLIO_DATA
 
 async def chat_with_openrouter(user_message: str, conversation_history: list) -> str:
-    """
-    Send a message to OpenRouter API and get response.
-    Free models available: google/gemini-2.0-flash-lite, meta-llama/llama-2-7b, etc.
-    """
     
     system_prompt = f"""You are a helpful AI assistant representing a software developer's portfolio. 
     
@@ -55,7 +51,6 @@ Be professional, helpful, and concise. If asked something not in the portfolio, 
             if response.status_code == 200:
                 data = response.json()
                 content = data["choices"][0]["message"]["content"]
-                # Strip reasoning/thinking tokens from DeepSeek R1 and similar models
                 import re
                 content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
                 return content
