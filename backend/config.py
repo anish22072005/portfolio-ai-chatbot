@@ -14,7 +14,7 @@ PORTFOLIO_DATA = {
     "email": "anishnath2005@gmail.com",
     "phone": "+91 8472090399",
     "location": "Chennai, India",
-    "bio": "Hello Everyone! I'm Anish Nath, a passionate full-stack developer with a strong foundation in computer science. I have experience building web applications using technologies like React, TypeScript, FastAPI, and MongoDB. I enjoy solving complex problems and creating efficient solutions. I'm currently exploring AI and machine learning to enhance my development skills. Feel free to ask me anything about my skills, experience, or projects!",
+    "bio": "Hello Everyone! I'm Anish Nath, a passionate full-stack developer with a strong foundation in computer science. I have experience building web applications using technologies like React, TypeScript, FastAPI, and MongoDB. I enjoy solving complex problems and creating efficient solutions. I'm currently exploring AI and machine learning to enhance my development skills.\n\nBeyond tech, I hold a Guitar certificate from the London College of Music 🎸, a Brown Belt in Karate 🥋, and have represented my district as a competitive Lawn Tennis player 🎾. Feel free to ask me anything about my skills, experience, or projects!",
     "skills": [
         "Python", "JavaScript", "React", "TypeScript", "FastAPI", 
         "MongoDB", "Git", "REST APIs", "Web Development", "Machine Learning", "Java"
