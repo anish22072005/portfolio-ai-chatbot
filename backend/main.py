@@ -13,7 +13,14 @@ app = FastAPI(title="Portfolio AI Chatbot API", version="1.0.0")
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify exact origins
+    allow_origins=[
+        "https://portfolio-ai-chatbot.netlify.app",
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
+        "http://localhost:3004",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
