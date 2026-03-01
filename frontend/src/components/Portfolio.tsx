@@ -1,34 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { portfolioAPI, PortfolioData } from '../api';
+import React, { useState } from 'react';
+import { portfolioData } from '../portfolioData';
 import '../styles/portfolio.css';
 
 export const Portfolio: React.FC = () => {
-  const [portfolio, setPortfolio] = useState<PortfolioData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const portfolio = portfolioData;
   const [activeTab, setActiveTab] = useState<'about' | 'skills' | 'experience' | 'projects' | 'education'>('about');
-
-  useEffect(() => {
-    const fetchPortfolio = async () => {
-      try {
-        const data = await portfolioAPI.getPortfolio();
-        setPortfolio(data);
-      } catch (error) {
-        console.error('Failed to fetch portfolio:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPortfolio();
-  }, []);
-
-  if (loading) {
-    return <div className="portfolio-loading">Loading portfolio...</div>;
-  }
-
-  if (!portfolio) {
-    return <div className="portfolio-error">Failed to load portfolio</div>;
-  }
 
   return (
     <div className="portfolio-container">

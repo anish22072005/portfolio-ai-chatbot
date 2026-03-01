@@ -47,6 +47,9 @@ Rules: Be concise and professional. Only use the data above. If something is not
     messages.extend(conversation_history)
     messages.append({"role": "user", "content": user_message})
     
+    if not OPENROUTER_API_KEY:
+        return "AI service is not configured. Please set the OPENROUTER_API_KEY environment variable."
+
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
