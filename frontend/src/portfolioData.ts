@@ -24,12 +24,26 @@ export const portfolioData: PortfolioData = {
     {
       name: "Portfolio AI Chatbot",
       description: "Interactive portfolio with AI-powered chat",
-      technologies: ["React", "TypeScript", "FastAPI", "OpenRouter", "MongoDB"]
+      technologies: ["React", "TypeScript", "FastAPI", "OpenRouter", "MongoDB"],
+      url: "https://github.com/anish22072005?tab=repositories&q=Portfolio+AI+Chatbot"
     },
     {
       name: "Full Stack Task Manager",
       description: "A full stack task management website to create, update, and track tasks with user authentication",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"]
+      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Express", "MongoDB"],
+      url: "https://github.com/anish22072005?tab=repositories&q=Task+Manager"
+    },
+    {
+      name: "AI-Journal-System",
+      description: "An AI-powered journaling system that generates daily journal entries based on user prompts and mood inputs.",
+      technologies: ["Python", "FastAPI", "OpenRouter", "MongoDB"],
+      url: "https://github.com/anish22072005?tab=repositories&q=AI-Journal-System"
+    },
+    {
+      name: "Nutri-Coach-Pro",
+      description: "An AI-powered nutrition coaching app that provides personalized meal plans and dietary advice based on user preferences and health goals.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Python", "Flask", "Gemini API"],
+      url: "https://github.com/anish22072005?tab=repositories&q=Nutri-Coach-Pro"
     }
   ],
   education: [
@@ -37,14 +51,14 @@ export const portfolioData: PortfolioData = {
       institution: "SRM Institute of Science and Technology, Chennai",
       degree: "Bachelor of Technology in Computer Science",
       year: "2024 – 2028",
-      cgpa: "9.0 / 10",
+      cgpa: "8.6 / 10",
       type: "college"
     },
     {
       institution: "Delhi Public School, Numaligarh, Assam",
       degree: "Higher Secondary (Class XII) & Secondary (Class X)",
       year: "2024",
-      percentage_12: "81.4%",
+      percentage_12: "75.4%",
       percentage_10: "91.4%",
       type: "school"
     }

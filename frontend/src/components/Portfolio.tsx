@@ -5,11 +5,17 @@ import '../styles/portfolio.css';
 export const Portfolio: React.FC = () => {
   const portfolio = portfolioData;
   const [activeTab, setActiveTab] = useState<'about' | 'skills' | 'experience' | 'projects' | 'education'>('about');
+  const initials = portfolio.name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
 
   return (
     <div className="portfolio-container">
       <div className="portfolio-header">
-        <div className="portfolio-avatar">AN</div>
+        <div className="portfolio-avatar">{initials}</div>
         <h1>{portfolio.name}</h1>
         <p className="title">{portfolio.title}</p>
         <p className="location">📍 {portfolio.location}</p>
@@ -73,7 +79,7 @@ export const Portfolio: React.FC = () => {
                     <span key={tech} className="tech-badge">{tech}</span>
                   ))}
                 </div>
-                <a href={portfolio.github} target="_blank" rel="noopener noreferrer" className="project-link">
+                <a href={project.url ?? portfolio.github} target="_blank" rel="noopener noreferrer" className="project-link">
                   View on GitHub →
                 </a>
               </div>

@@ -28,6 +28,7 @@ export interface PortfolioData {
     name: string;
     description: string;
     technologies: string[];
+    url?: string;
   }>;
   education: Array<{
     institution: string;

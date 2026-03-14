@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Portfolio } from './components/Portfolio';
 import { ChatBot } from './components/ChatBot';
+import { portfolioData } from './portfolioData';
 import './styles/app.css';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <div className="header-brand">
           <div className="header-logo">🚀</div>
           <div>
-            <h1>Anish Nath <span className="header-subtitle">— Portfolio</span></h1>
+            <h1>{portfolioData.name} <span className="header-subtitle">— Portfolio</span></h1>
           </div>
         </div>
         <nav className="nav-tabs">
@@ -49,7 +50,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        © 2026 <span>Anish Nath</span>. All rights reserved.
+        © 2026 <span>{portfolioData.name}</span>. All rights reserved.
       </footer>
     </div>
   );
